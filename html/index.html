@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smrkec Jail System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main id="app" class="hidden">
+    <section class="panel">
+      <header class="topbar">
+        <div class="brand-mark">S<span>.</span></div>
+        <div class="brand-copy"><small id="serverName">SMRKEC POLICE</small><h1 id="menuTitle">Jail System</h1></div>
+        <div class="secure"><i></i> POLICE DATABASE</div>
+        <button class="close" id="close" aria-label="Zapri">×</button>
+      </header>
+      <div class="content">
+        <aside class="sidebar">
+          <div class="side-label">OPERACIJE</div>
+          <button class="nav active" data-view="book"><span class="nav-icon">▤</span> Zapri osebo</button>
+          <button class="nav" data-view="release"><span class="nav-icon">↗</span> Izpustitev</button>
+          <div class="sidebar-note"><div class="status-dot"></div><div><strong>Varna povezava</strong><small>ESX · Jail service</small></div></div>
+        </aside>
+        <section class="workspace">
+          <div class="page-head"><div><div class="eyebrow">KAZENSKI POSTOPEK / <span id="modeLabel">ZAPOR</span></div><h2 id="pageTitle">Zapri osebo</h2><p id="pageSub">Izberi igralca v bližini in izpolni podatke o kazni.</p></div><button class="refresh" id="refresh"><span>↻</span> Osveži seznam</button></div>
+          <div class="columns" id="columns">
+            <section class="card people-card">
+              <div class="card-head"><div><h3>Igralci v bližini</h3><p>Največja razdalja je določena v configu.</p></div><span class="count" id="playerCount">0</span></div>
+              <div class="search-wrap"><span>⌕</span><input id="search" placeholder="Išči po imenu ali ID-ju" autocomplete="off" /></div>
+              <div id="players" class="players"><div class="empty">Iskanje igralcev v bližini ...</div></div>
+              <div class="list-foot"><span class="status-dot"></span> Seznam se osveži na zahtevo</div>
+            </section>
+            <section class="card form-card" id="bookingForm">
+              <div class="card-head"><div><h3>Podatki o kazni</h3><p>Vsi podatki so obvezni.</p></div><div class="form-symbol">§</div></div>
+              <div class="selected-person" id="selectedPerson"><div class="avatar">?</div><div><strong>Noben igralec ni izbran</strong><small>Izberi osebo s seznama</small></div><span class="selection-pill">NI IZBRAN</span></div>
+              <label for="reason">Razlog za zapor <span>*</span></label>
+              <textarea id="reason" maxlength="255" placeholder="Npr. oviranje uradne osebe, rop ..."></textarea>
+              <div class="field-row"><label for="months">Trajanje kazni <span>*</span></label><div class="unit">MESECI</div></div>
+              <div class="duration-wrap"><input id="months" type="number" min="1" max="120" value="5" /><div class="duration-side"><strong>mesecev</strong><small id="minutesHint">5 mesecev = 5 minut</small></div><div class="clock">◷</div></div>
+              <div class="notice"><span>i</span><p>V sistemu se vsak vpisan mesec šteje kot <strong>1 minuta</strong> dejanskega časa.</p></div>
+              <button class="primary" id="jailBtn" disabled><span>▣</span> Potrdi zaporno kazen <b>→</b></button>
+              <div class="form-foot">Pred potrditvijo preveri identiteto in razlog.</div>
+            </section>
+          </div>
+          <div class="release-card hidden" id="releaseView"><div class="release-icon">↗</div><div><h3>Izpustitev igralca</h3><p>Izberi zaprto osebo s seznama igralcev v bližini, nato potrdi izpustitev.</p><div id="releaseSelected">Noben igralec ni izbran.</div></div><button class="primary" id="releaseBtn" disabled>Izpusti iz zapora <b>→</b></button></div>
+          <footer><span>SMRKEC SYSTEMS <b>•</b> JAIL MANAGEMENT</span><span>INTERNO ORODJE <b>·</b> V1.0.0</span></footer>
+        </section>
+      </div>
+    </section>
+    <div class="toast" id="toast"></div>
+  </main>
+  <section id="jailHud" class="jail-hud hidden"><div class="hud-top"><span class="hud-icon">§</span><div><small>SMRKEC CORRECTIONS</small><strong>Prestajaš kazen</strong></div><span class="hud-live"></span></div><div class="hud-time" id="hudTime">05:00</div><div class="hud-label">PREOSTALI ČAS</div><div class="hud-reason"><small>RAZLOG</small><span id="hudReason">—</span></div></section>
+  <script src="app.js"></script>
+</body>
+</html>
